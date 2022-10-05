@@ -1,0 +1,85 @@
+def main():
+    podstroka = []  # стэк из скобок
+    lev_skobki = ['(', '[', '{']
+    prav_skobki = [')', ']', '}']
+    if_bad_skobka = False  # проверка на поломаные скобки
+    indx = -1  # индкс эелемента в исходной строке
+
+    for el in stroka:
+
+        indx += 1
+
+        # проверка на скобки
+        if if_bad_skobka:
+            upd_maska(indx)
+            podstroka = []
+            if_bad_skobka = False
+
+        # заполнение стека левыми скобками
+        if el in lev_skobki:
+            podstroka += [el]
+        else:
+            # если нет открывающей скобки, то ставим в маске на этот индекс 1
+            if not podstroka:
+                maska[indx] = 1
+            # если скобка закрывается то убирем левую скобку из стека, заполняем индексы маски значением 2
+            elif lev_skobki.index(podstroka[-1]) == prav_skobki.index(el):
+                index_lev_skobki = stroka[:indx].rfind(podstroka[-1])
+                maska[index_lev_skobki], maska[indx] = 2, 2
+                podstroka.pop()
+            # иначе все не закрыте скобки до этого момента автоматически являются сломаными
+            else:
+                if_bad_skobka = True
+
+    maska_to_str()
+
+
+# изменение значений маски в случае поломанной скобки
+def upd_maska(a):
+    for i in range(a + 1):
+        if maska[i] == 0:
+            maska[i] = 1
+
+
+# перевод маски в строки из получившихся скобок, или вывод True и False ситуаций
+def maska_to_str():
+    return_stroka = ''
+    max_len = 0
+    max_str = ''
+
+    # если маска не претерпела изменений
+    if sum(maska) == 0:
+        print(False)
+        exit()
+    # если в маске все значения 2, то есть верные
+    elif 1 not in maska:
+        print(True)
+        exit()
+    # если все значения в маске 1, то есть ложные
+    elif 2 not in maska:
+        print(False)
+        exit()
+
+    #  перевод маски в строку из скобок
+    for el in range(len(maska)):
+        if maska[el] == 1:
+            return_stroka += ' '
+        else:
+            return_stroka += stroka[el]
+
+    # разбиение строки получившейся из маски ан строки со скобками
+    return_stroka = return_stroka.split()
+    # поиск наибольшей строки скобок
+    for el in return_stroka:
+        if len(el) > max_len:
+            max_str = el
+            max_len = len(el)
+
+    print(max_str)
+
+
+stroka = input()
+maska = [0 for i in range(len(stroka))]
+
+if __name__ == '__main__':
+    main()
