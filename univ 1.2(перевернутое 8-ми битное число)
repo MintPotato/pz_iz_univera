@@ -9,10 +9,10 @@ else:
 
 num1 = int(num1[::-1])
 
-if  -128 < num1 < 127: # по моему здесь должно быть наоборот, если число выходит за пределы, а не внутри находиться
-    print('no solution')
-else:
+if  -128 < num1 < 127:
     if est_minus:
         print(f'-{num1}')
     else:
         print(num1)
+else:
+    print('no solution')
