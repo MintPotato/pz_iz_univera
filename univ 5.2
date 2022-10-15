@@ -1,0 +1,49 @@
+from collections import namedtuple as nt
+
+
+def main():
+    global bank_cash
+    bank = nt('bank', 'name cash')
+    n = 6
+    podstroka = [0] * n # "подстрока" из n элементов необходима для проведения подсчетов
+
+    street = [bank(name='Тинькофф', cash=10), bank(name='СПБ-Банк', cash=1), bank(name='Банк Авангард', cash=4), bank(name='Сбербанк', cash=10), bank(name='Альфабанк', cash=7), bank(name='Газпромбанк', cash=3)]
+    bank_cash = [el.cash for el in street]
+
+# заполнение первых 2х элементов "подстроки" в зависимости от их значений
+    if bank_cash[0] > bank_cash[1]:
+        podstroka[0], podstroka[1] = bank_cash[0], bank_cash[0]
+        bank_indxs = ([0], [0]) #
+    else:
+        podstroka[:2] = bank_cash[:2]
+        bank_indxs = ([0], [1])
+
+#
+    for i in range(2, n):
+
+        nov_znach, star_znach = bank_indxs[0] + [i], bank_indxs[1] # 
+
+        if cash_ot_indx(nov_znach) > cash_ot_indx(star_znach):
+            bank_indxs = (star_znach, nov_znach)
+        else:
+            bank_indxs = bank_indxs[1], star_znach
+
+
+    summa_cash = 0
+    print('Нам надо ограбить банки:')
+    for indx in bank_indxs[1]:
+        print('{} - под номером {}'.format(street[indx].name, indx + 1))
+        summa_cash += street[indx].cash
+    print('Чтобы получить максимуальную прибыль в виде {} млн рублей'.format(summa_cash))
+
+# 
+def cash_ot_indx(indxs):
+    return_cash = 0
+    for el in indxs:
+        return_cash += bank_cash[el]
+
+    return return_cash
+
+
+if __name__ == '__main__':
+    main()
