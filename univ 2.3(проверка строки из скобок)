@@ -1,5 +1,5 @@
 def main():
-    podstroka = []  # стэк из скобок
+    stek = []  # стэк из скобок
     lev_skobki = ['(', '[', '{']
     prav_skobki = [')', ']', '}']
     if_bad_skobka = False  # проверка на поломаные скобки
@@ -12,29 +12,29 @@ def main():
         # проверка на скобки
         if if_bad_skobka:
             upd_maska(indx)
-            podstroka = []
+            stek = []
             if_bad_skobka = False
 
         # заполнение стека левыми скобками
         if el in lev_skobki:
-            podstroka += [el]
+            stek += [el]
         else:
             # если нет открывающей скобки, то ставим в маске на этот индекс 1
-            if not podstroka:
+            if not stek:
                 maska[indx] = 1
             # если скобка закрывается то убирем левую скобку из стека, заполняем индексы маски значением 2
-            elif lev_skobki.index(podstroka[-1]) == prav_skobki.index(el):
-                index_lev_skobki = stroka[:indx].rfind(podstroka[-1])
+            elif lev_skobki.index(stek[-1]) == prav_skobki.index(el):
+                index_lev_skobki = stroka[:indx].rfind(stek[-1])
                 maska[index_lev_skobki], maska[indx] = 2, 2
-                podstroka.pop()
+                stek.pop()
             # иначе все не закрыте скобки до этого момента автоматически являются сломаными
             else:
                 if_bad_skobka = True
 
     if if_bad_skobka:
-            upd_maska(indx)
-            podstroka = []
-            if_bad_skobka = False
+        upd_maska(indx)
+        stek = []
+        if_bad_skobka = False
 
     maska_to_str()
 
@@ -57,7 +57,7 @@ def maska_to_str():
         print(False)
         return
     # если в маске все значения 2, то есть верные
-    elif 1 not in maska:
+    elif 1 not in maska and 0 not in maska:
         print(True)
         return
     # если все значения в маске 1, то есть ложные
@@ -67,7 +67,7 @@ def maska_to_str():
 
     #  перевод маски в строку из скобок
     for el in range(len(maska)):
-        if maska[el] == 1:
+        if maska[el] == 1 or maska[el] == 0:
             return_stroka += ' '
         else:
             return_stroka += stroka[el]
