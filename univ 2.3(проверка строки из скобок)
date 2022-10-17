@@ -31,6 +31,11 @@ def main():
             else:
                 if_bad_skobka = True
 
+    if if_bad_skobka:
+            upd_maska(indx)
+            podstroka = []
+            if_bad_skobka = False
+
     maska_to_str()
 
 
@@ -78,7 +83,7 @@ def maska_to_str():
     print(max_str)
 
 
-stroka = input() + '`'
+stroka = input()
 maska = [0 for i in range(len(stroka))]
 
 if __name__ == '__main__':
