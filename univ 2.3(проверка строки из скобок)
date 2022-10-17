@@ -55,15 +55,15 @@ def maska_to_str():
     # если маска не претерпела изменений
     if sum(maska) == 0:
         print(False)
-        exit()
+        return
     # если в маске все значения 2, то есть верные
     elif 1 not in maska:
         print(True)
-        exit()
+        return
     # если все значения в маске 1, то есть ложные
     elif 2 not in maska:
         print(False)
-        exit()
+        return
 
     #  перевод маски в строку из скобок
     for el in range(len(maska)):
