@@ -78,7 +78,7 @@ def maska_to_str():
     print(max_str)
 
 
-stroka = input()
+stroka = input() + '`'
 maska = [0 for i in range(len(stroka))]
 
 if __name__ == '__main__':
