@@ -7,21 +7,25 @@ def main():
     print(unique_from_input2(input1, input2))
 
 
+# возвращение строки с элементами пересечения мн-тв
 def in_all_inputs(list1, list2):
     otv = set(list1).intersection(set(list2))
     return '{} elements: {}'.format(len(otv), otv)
 
 
+# возвращение строки с уникальными элемментами
 def unique_znach(list1, list2):
     otv =  set(list1).symmetric_difference(set(list2))
     return '{} elements: {}'.format(len(otv), otv)
 
 
+# возвращение строки с уникальными элементами первого списка
 def unique_from_input1(list1, list2):
     otv =  set(list1).difference(set(list2))
     return '{} elements: {}'.format(len(otv), otv)
 
 
+# возвращение строки с уникальными элементами второго списка
 def unique_from_input2(list1, list2):
     otv =  set(list2).difference(set(list1))
     return '{} elements: {}'.format(len(otv), otv)
