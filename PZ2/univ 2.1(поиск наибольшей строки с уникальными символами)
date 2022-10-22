@@ -1,0 +1,45 @@
+# def main():
+#     stroka = input() + '`'
+#
+#     max_podstroka = ''
+#     max_len = 0
+#     podstroka = ''
+#
+#     for el in stroka:
+#         if el not in podstroka:
+#             podstroka += el
+#         else:
+#             if len(podstroka) > max_len:
+#                 max_podstroka, max_len = podstroka, len(podstroka)
+#             podstroka = el
+#
+#     print(max_podstroka)
+#
+#
+# if __name__ == '__main__':
+#     main()
+#
+#
+def main():
+    
+    stroka = input()
+    
+    max_podstroka = ''
+    max_len = 0
+    podstroka = ''
+    
+    for i in range(len(stroka) - 1):
+        podstroka = stroka[i]
+        for j in range(i + 1, len(stroka)):
+            if stroka[j] in podstroka:
+                break
+            else:
+                podstroka += stroka[j]
+        if len(podstroka) > max_len:
+            max_podstroka, max_len = podstroka, len(podstroka)
+    
+    
+    print(max_podstroka)
+    
+if __name__ == '__main__':
+    main()
