@@ -1,0 +1,50 @@
+def main():
+    stroka = input()
+    kolvo_strok = int(input())
+    return_stroka = '' #vyhodnaya stroka
+
+    a = kolvo_strok * 2 # dlina obrabativaemih strok
+
+    super_stroka = '' # vspomogatelnaya peremennaya
+
+    # opredelenie kolva obrabativaemih strok
+    if len(stroka) % kolvo_strok == 0:
+        leng = len(stroka) // kolvo_strok
+    else:
+        leng = len(stroka) // kolvo_strok + 1
+
+    # formirovanie rabochih strok + dobavlenie ih k vspom perem
+    for row in range(leng):
+        now_stroka = stroka[(a - 2) * row: (a - 2) * (row + 1)]
+
+        if len(now_stroka) < a - 2:
+            now_stroka = now_stroka + '!' * (a - 2 - len(now_stroka))
+
+        edit_stroka = now_stroka[0]
+        for i in range(1, kolvo_strok):
+            edit_stroka = edit_stroka + now_stroka[i] + now_stroka[-i]
+
+        edit_stroka = edit_stroka[0] + '!' + edit_stroka[1:-1] + '!'
+
+        super_stroka += edit_stroka
+
+    # sortirovka vspom perem
+    for i in range(0, a, 2):
+        for j in range(leng):
+            b = i + a * j  # levaya granitsa 2h nuzhnih bukv
+            return_stroka += super_stroka[b: b + 2]
+
+    return_stroka = return_stroka.replace('!', '')
+
+    """
+    a, return_stroka = return_stroka, ''
+    for el in a:
+        if el != '!':
+            return_stroka += el
+    """
+
+    print(return_stroka)
+
+
+if __name__ == '__main__':
+    main()
