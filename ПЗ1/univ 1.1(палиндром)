@@ -1,7 +1,0 @@
-string = input()
-flag = True
-for i in range(len(string)):
-    if string[i] != string[-i-1]:
-        flag = False
-
-print(flag)
