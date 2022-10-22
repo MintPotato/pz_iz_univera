@@ -1,9 +1,0 @@
-def main():
-    stroka = input().split()
-    stroka = stroka[::-1]
-    stroka = ' '.join(stroka)
-    print(stroka.capitalize())
-
-
-if __name__ == '__main__':
-    main()
