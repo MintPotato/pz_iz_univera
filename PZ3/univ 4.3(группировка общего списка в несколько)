@@ -1,0 +1,45 @@
+def main():
+    global used_strings
+
+    for num_el in range(len(vhod_spisok)):
+        string = vhod_spisok[num_el]
+        if string not in used_strings:
+            poisk_par_dlya_stroki(num_el)
+
+    print(itog_spis)
+
+
+# функция используемая для потенциальных парных элементов к заданному
+def poisk_par_dlya_stroki(num_el):
+    global itog_spis, used_strings
+
+    changes_in_itog_spis = [vhod_spisok[num_el]]  # список из удовлетворяющих условию пар
+
+    for el in range(num_el + 1, len(vhod_spisok)):  #
+
+        if len(vhod_spisok[num_el]) == len(vhod_spisok[el]):  #
+
+            if is_strings_ok(vhod_spisok[num_el], vhod_spisok[el]):
+                changes_in_itog_spis += [vhod_spisok[el]]
+
+    itog_spis.append(changes_in_itog_spis)
+    used_strings.extend(changes_in_itog_spis)
+
+
+# функция сравнивает равность количества букв в потенциально верной паре строк
+def is_strings_ok(string1, string2):
+
+    for bukva in string1:
+        if string1.count(bukva) != string2.count(bukva):
+            return False
+
+    return True
+
+
+vhod_spisok = ["qwe", "ewq", "qwe", "ssad", "asd", "dsa", "dsas", "qwee", "zxc", "cxz", "xxz", "z", "s", "qweasdzxc", "zzxc", "z"]
+itog_spis = []   
+used_strings = []  # список созданный для того чтобы не проходить по элементам которые добавляются к итоговому списку
+
+if __name__ == '__main__':
+    main()
+    
