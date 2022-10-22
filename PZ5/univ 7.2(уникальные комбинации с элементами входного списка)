@@ -1,0 +1,30 @@
+from itertools import permutations as perm
+
+
+def main():
+    list1 = [1, 2, 3, 4, 5]
+    
+    set1 = set(list1) # мн-во элементов из вводного списка
+    otvet = [] 
+    used_combinations = [] # использованые комбинации с уникальными элементами
+
+    for i in range(len(list1)):
+        spis = tuple(perm(set1, i + 1)) # создание кортежа с возможными комбинациями подходящими под ответ
+        print(spis)
+
+        # добавление комбинаций с уникальными элементами
+        for el in spis:
+
+            set_of_combination = set(el)
+
+            # проверка на то, была ли комбинация из этих элементов записана и является ли она подмножеством вводного списка
+            if set_of_combination.issubset(set1) and set_of_combination not in used_combinations:
+                otvet.append(el)
+                used_combinations.append(set_of_combination)
+
+
+    print(set(otvet), len(otvet))
+
+
+if __name__ == '__main__':
+    main()
