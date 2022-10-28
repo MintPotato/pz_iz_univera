@@ -1,0 +1,11 @@
+def main():
+  candies = [i for i in range(int(input()))]
+  packs = [i for i in range(int(input()))]
+  
+  if len(candies) < len(packs):
+    print('No solution')
+    return
+    
+    
+if __name__ == '__main__':
+  main()
