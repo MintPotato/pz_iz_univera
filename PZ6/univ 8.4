@@ -1,0 +1,33 @@
+def main():
+    global vozm_nums, possib_results
+    input_code = input()
+
+    vozm_nums = {'1': [1, 2, 4], '2': [1, 2, 3, 5], '3': [2, 3, 6], '4': [1, 4, 5, 7], '5': [2, 4, 5, 6, 8],
+                 '6': [3, 5, 6, 9], '7': [4, 7, 8], '8': [5, 7, 8, 9, 0], '9': [6, 8, 9], '0': [8, 0]}
+    code_cracker(input_code)
+
+
+def code_cracker(a):
+    global vozm_nums
+    combs = [vozm_nums[el] for el in a]
+
+    possib_results = [str(el) for el in combs[0]]
+
+    for comb in combs[1:]:
+
+        possib_results = upd_maska(possib_results, comb)
+    print(possib_results)
+
+
+def upd_maska(maska, upd):
+    return_shit = []
+    for el in maska:
+
+        for el1 in upd:
+            return_shit += [el + str(el1)]
+
+    return return_shit
+
+
+if __name__ == '__main__':
+    main()

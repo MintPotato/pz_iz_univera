@@ -1,0 +1,32 @@
+def rome_to_arab(stroka):
+    return_spis = []
+    for num in stroka:
+        return_spis += [rome_nums[num]]
+
+    print(calc(return_spis))
+
+
+def calc(arabic_spis):
+    otvet = 0
+    arabic_spis.reverse()
+    prev_el = 0
+    for el in arabic_spis:
+        if el >= abs(prev_el):
+            prev_el = el
+        else:
+            prev_el = -el
+        otvet += prev_el
+
+    return otvet
+
+
+def main():
+    global rome_nums
+    # s = input()
+    s = 'MCMLXXXIV'
+    rome_nums = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+    rome_to_arab(s)
+
+
+if __name__ == '__main__':
+    main()

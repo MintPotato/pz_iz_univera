@@ -1,0 +1,20 @@
+from http.client import UNSUPPORTED_MEDIA_TYPE
+
+
+def santa_users(spisok):
+    users_id = {}
+    for user in spisok:
+        if len(user) == 1:
+            users_id[user[0]] = None
+        else:
+            users_id[user[0]] = user[1]
+
+    return users_id
+
+def main():
+    print(santa_users([["name1 surname1", 12345], ["name2 surname2"], ["name3 surname3", 12354], ["name4 surname4", 12435]]))
+
+
+
+if __name__ == '__main__':
+    main()
