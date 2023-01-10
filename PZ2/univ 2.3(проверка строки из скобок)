@@ -24,7 +24,8 @@ def main():
                 maska[indx] = 1
             # если скобка закрывается то убирем левую скобку из стека, заполняем индексы маски значением 2
             elif lev_skobki.index(stek[-1]) == prav_skobki.index(el):
-                index_lev_skobki = stroka[:indx].rfind(stek[-1])
+                # index_lev_skobki = stroka[:indx].rfind(stek[-1])
+                index_lev_skobki = ''.join([str(el) for el in maska[:indx]]).rfind('0')
                 maska[index_lev_skobki], maska[indx] = 2, 2
                 stek.pop()
             # иначе все не закрыте скобки до этого момента автоматически являются сломаными
