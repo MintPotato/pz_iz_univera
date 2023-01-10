@@ -1,0 +1,29 @@
+from math import factorial as fact
+
+
+def main():
+    candies = int(input())
+    packs = int(input())
+
+    print(kolvo_comb(candies, packs))
+
+
+def kolvo_comb(cand, pack):
+    if pack > cand:
+        return 'ns'
+
+    ab = 1 / fact(pack)
+    ans = 0
+    for i in range(pack + 1):
+        a = (-1) ** (pack + i)
+        b = fact(pack) / (fact(pack - i) * fact(i))
+        c = i ** cand
+
+        ans += round(a * b * c)
+
+    ans *= ab
+    return int(ans)
+
+
+if __name__ == '__main__':
+    main()
